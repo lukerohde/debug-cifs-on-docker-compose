@@ -1,0 +1,25 @@
+version: "3"
+services:
+  samba:
+    image: dperson/samba
+    volumes:
+      - ./myshare:/mount
+    environment:
+      - USER=user;password
+      - SHARE=share;/mount
+  www:
+    build: . 
+    environment:
+      - USER=user
+      - PASS=password
+      - SHARE=//samba/share
+    volumes:
+      - .:/app
+    links:
+      - samba
+    cap_add:
+      - SYS_ADMIN
+      - DAC_READ_SEARCH
+    tty: true
+    stdin_open: true
+    command: tail -f /dev/null

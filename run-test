@@ -1,0 +1,5 @@
+#!/bin/bash
+echo '"docker-compose down && docker-compose run www ./myscript" returns permission denied'
+docker-compose down && docker-compose run www ./myscript
+echo '"docker-compose down && docker-compose up -d && docker-compose exec www ./myscript" succeeds in mounting the share'
+docker-compose down && docker-compose up -d && docker-compose exec www ./myscript

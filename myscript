@@ -1,0 +1,4 @@
+#!/bin/bash
+mkdir -p /mnt/data
+mount -t cifs -o username=$USER,password=$PASS,vers=3\.0 "$SHARE" /mnt/data
+ls /mnt/data
